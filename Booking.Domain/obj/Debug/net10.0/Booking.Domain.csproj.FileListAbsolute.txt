@@ -1,0 +1,11 @@
+D:\dev\Booking\Booking.Domain\bin\Debug\net10.0\Booking.Domain.deps.json
+D:\dev\Booking\Booking.Domain\bin\Debug\net10.0\Booking.Domain.dll
+D:\dev\Booking\Booking.Domain\bin\Debug\net10.0\Booking.Domain.pdb
+D:\dev\Booking\Booking.Domain\obj\Debug\net10.0\Booking.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\dev\Booking\Booking.Domain\obj\Debug\net10.0\Booking.Domain.AssemblyInfoInputs.cache
+D:\dev\Booking\Booking.Domain\obj\Debug\net10.0\Booking.Domain.AssemblyInfo.cs
+D:\dev\Booking\Booking.Domain\obj\Debug\net10.0\Booking.Domain.csproj.CoreCompileInputs.cache
+D:\dev\Booking\Booking.Domain\obj\Debug\net10.0\Booking.Domain.dll
+D:\dev\Booking\Booking.Domain\obj\Debug\net10.0\refint\Booking.Domain.dll
+D:\dev\Booking\Booking.Domain\obj\Debug\net10.0\Booking.Domain.pdb
+D:\dev\Booking\Booking.Domain\obj\Debug\net10.0\ref\Booking.Domain.dll
