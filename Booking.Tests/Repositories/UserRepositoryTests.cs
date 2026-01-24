@@ -1,6 +1,6 @@
-﻿namespace Booking.Tests.Repositories;
-
-public class UserRepositoryTests
-{
-    
-}
+﻿// namespace Booking.Tests.Repositories;
+//
+// public class UserRepositoryTests
+// {
+//     
+// }

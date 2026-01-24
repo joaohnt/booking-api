@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\dev\\Booking\\Booking.Tests\\Booking.Tests.csproj": {}
+    "C:\\dev\\booking-api\\Booking.Tests\\Booking.Tests.csproj": {}
   },
   "projects": {
-    "D:\\dev\\Booking\\Booking.Application\\Booking.Application.csproj": {
+    "C:\\dev\\booking-api\\Booking.Application\\Booking.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\dev\\Booking\\Booking.Application\\Booking.Application.csproj",
+        "projectUniqueName": "C:\\dev\\booking-api\\Booking.Application\\Booking.Application.csproj",
         "projectName": "Booking.Application",
-        "projectPath": "D:\\dev\\Booking\\Booking.Application\\Booking.Application.csproj",
-        "packagesPath": "C:\\Users\\Joao\\.nuget\\packages\\",
-        "outputPath": "D:\\dev\\Booking\\Booking.Application\\obj\\",
+        "projectPath": "C:\\dev\\booking-api\\Booking.Application\\Booking.Application.csproj",
+        "packagesPath": "C:\\Users\\rozeg\\.nuget\\packages\\",
+        "outputPath": "C:\\dev\\booking-api\\Booking.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Joao\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\rozeg\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -26,8 +26,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\dev\\Booking\\Booking.Domain\\Booking.Domain.csproj": {
-                "projectPath": "D:\\dev\\Booking\\Booking.Domain\\Booking.Domain.csproj"
+              "C:\\dev\\booking-api\\Booking.Domain\\Booking.Domain.csproj": {
+                "projectPath": "C:\\dev\\booking-api\\Booking.Domain\\Booking.Domain.csproj"
               }
             }
           }
@@ -47,6 +47,12 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -341,17 +347,17 @@
         }
       }
     },
-    "D:\\dev\\Booking\\Booking.Domain\\Booking.Domain.csproj": {
+    "C:\\dev\\booking-api\\Booking.Domain\\Booking.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\dev\\Booking\\Booking.Domain\\Booking.Domain.csproj",
+        "projectUniqueName": "C:\\dev\\booking-api\\Booking.Domain\\Booking.Domain.csproj",
         "projectName": "Booking.Domain",
-        "projectPath": "D:\\dev\\Booking\\Booking.Domain\\Booking.Domain.csproj",
-        "packagesPath": "C:\\Users\\Joao\\.nuget\\packages\\",
-        "outputPath": "D:\\dev\\Booking\\Booking.Domain\\obj\\",
+        "projectPath": "C:\\dev\\booking-api\\Booking.Domain\\Booking.Domain.csproj",
+        "packagesPath": "C:\\Users\\rozeg\\.nuget\\packages\\",
+        "outputPath": "C:\\dev\\booking-api\\Booking.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Joao\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\rozeg\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -674,17 +680,17 @@
         }
       }
     },
-    "D:\\dev\\Booking\\Booking.Tests\\Booking.Tests.csproj": {
+    "C:\\dev\\booking-api\\Booking.Tests\\Booking.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\dev\\Booking\\Booking.Tests\\Booking.Tests.csproj",
+        "projectUniqueName": "C:\\dev\\booking-api\\Booking.Tests\\Booking.Tests.csproj",
         "projectName": "Booking.Tests",
-        "projectPath": "D:\\dev\\Booking\\Booking.Tests\\Booking.Tests.csproj",
-        "packagesPath": "C:\\Users\\Joao\\.nuget\\packages\\",
-        "outputPath": "D:\\dev\\Booking\\Booking.Tests\\obj\\",
+        "projectPath": "C:\\dev\\booking-api\\Booking.Tests\\Booking.Tests.csproj",
+        "packagesPath": "C:\\Users\\rozeg\\.nuget\\packages\\",
+        "outputPath": "C:\\dev\\booking-api\\Booking.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Joao\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\rozeg\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -696,11 +702,11 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "D:\\dev\\Booking\\Booking.Application\\Booking.Application.csproj": {
-                "projectPath": "D:\\dev\\Booking\\Booking.Application\\Booking.Application.csproj"
+              "C:\\dev\\booking-api\\Booking.Application\\Booking.Application.csproj": {
+                "projectPath": "C:\\dev\\booking-api\\Booking.Application\\Booking.Application.csproj"
               },
-              "D:\\dev\\Booking\\Booking.Domain\\Booking.Domain.csproj": {
-                "projectPath": "D:\\dev\\Booking\\Booking.Domain\\Booking.Domain.csproj"
+              "C:\\dev\\booking-api\\Booking.Domain\\Booking.Domain.csproj": {
+                "projectPath": "C:\\dev\\booking-api\\Booking.Domain\\Booking.Domain.csproj"
               }
             }
           }

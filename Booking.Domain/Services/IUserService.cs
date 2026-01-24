@@ -6,4 +6,5 @@ namespace Booking.Domain.Services;
 public interface IUserService
 {
     public void CreateUser(CreateUserCommand createUser);
+    Task<LoginUserResult> LoginUser (LoginUserCommand loginUser);
 }

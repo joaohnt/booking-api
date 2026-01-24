@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "prGSk98Qnts=",
+  "dgSpecHash": "Po/PpHYEr+k=",
   "success": true,
-  "projectFilePath": "D:\\dev\\Booking\\Booking.Domain\\Booking.Domain.csproj",
+  "projectFilePath": "C:\\dev\\booking-api\\Booking.Domain\\Booking.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

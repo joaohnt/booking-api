@@ -1,6 +1,7 @@
 ﻿using Booking.Domain.DTOs;
 using Booking.Domain.Entities;
 using Booking.Domain.Repositories;
+using Booking.Domain.ValueObjects;
 using Booking.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,5 +19,10 @@ public class UserRepository : IUserRepository
     {
         _context.Users.Add(user);
         _context.SaveChanges();
+    }
+
+    public Task<User?> GetByEmail(string email)
+    {
+        return _context.Users.FirstOrDefaultAsync(u => u.Email == Email.Create(email));
     }
 }

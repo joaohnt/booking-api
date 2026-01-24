@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "VDXQwqP1H4I=",
+  "dgSpecHash": "VBH2aAPFte4=",
   "success": true,
-  "projectFilePath": "D:\\dev\\Booking\\Booking.Application\\Booking.Application.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\dev\\booking-api\\Booking.Application\\Booking.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\rozeg\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

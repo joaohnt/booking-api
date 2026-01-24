@@ -6,4 +6,5 @@ namespace Booking.Domain.Repositories;
 public interface IUserRepository
 {
     void Add(User user);
+    Task<User?> GetByEmail(string email);
 }

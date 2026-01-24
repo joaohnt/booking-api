@@ -24,4 +24,12 @@ public class UserController : ControllerBase
         _userService.CreateUser(command);
         return Ok(command);
     }
+
+    [HttpPost]
+    [Route("signin")]
+    public async Task<LoginUserResult> SignIn([FromBody] LoginUserCommand command)
+    {
+        var result = await _userService.LoginUser(command);
+        return result;
+    }
 }

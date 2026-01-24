@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\dev\\Booking\\Booking.Domain\\Booking.Domain.csproj": {}
+    "C:\\dev\\booking-api\\Booking.Domain\\Booking.Domain.csproj": {}
   },
   "projects": {
-    "D:\\dev\\Booking\\Booking.Domain\\Booking.Domain.csproj": {
+    "C:\\dev\\booking-api\\Booking.Domain\\Booking.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\dev\\Booking\\Booking.Domain\\Booking.Domain.csproj",
+        "projectUniqueName": "C:\\dev\\booking-api\\Booking.Domain\\Booking.Domain.csproj",
         "projectName": "Booking.Domain",
-        "projectPath": "D:\\dev\\Booking\\Booking.Domain\\Booking.Domain.csproj",
-        "packagesPath": "C:\\Users\\Joao\\.nuget\\packages\\",
-        "outputPath": "D:\\dev\\Booking\\Booking.Domain\\obj\\",
+        "projectPath": "C:\\dev\\booking-api\\Booking.Domain\\Booking.Domain.csproj",
+        "packagesPath": "C:\\Users\\rozeg\\.nuget\\packages\\",
+        "outputPath": "C:\\dev\\booking-api\\Booking.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Joao\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\rozeg\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"

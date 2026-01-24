@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net10.0": {
+      "BCrypt.Net-Next/4.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Bogus/35.6.5": {
         "type": "package",
         "compile": {
@@ -465,6 +478,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "Booking.Domain": "1.0.0"
         },
         "compile": {
@@ -487,6 +501,37 @@
     }
   },
   "libraries": {
+    "BCrypt.Net-Next/4.0.3": {
+      "sha512": "W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
+      "type": "package",
+      "path": "bcrypt.net-next/4.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bcrypt.net-next.4.0.3.nupkg.sha512",
+        "bcrypt.net-next.nuspec",
+        "ico.png",
+        "lib/net20/BCrypt.Net-Next.dll",
+        "lib/net20/BCrypt.Net-Next.xml",
+        "lib/net35/BCrypt.Net-Next.dll",
+        "lib/net35/BCrypt.Net-Next.xml",
+        "lib/net462/BCrypt.Net-Next.dll",
+        "lib/net462/BCrypt.Net-Next.xml",
+        "lib/net472/BCrypt.Net-Next.dll",
+        "lib/net472/BCrypt.Net-Next.xml",
+        "lib/net48/BCrypt.Net-Next.dll",
+        "lib/net48/BCrypt.Net-Next.xml",
+        "lib/net5.0/BCrypt.Net-Next.dll",
+        "lib/net5.0/BCrypt.Net-Next.xml",
+        "lib/net6.0/BCrypt.Net-Next.dll",
+        "lib/net6.0/BCrypt.Net-Next.xml",
+        "lib/netstandard2.0/BCrypt.Net-Next.dll",
+        "lib/netstandard2.0/BCrypt.Net-Next.xml",
+        "lib/netstandard2.1/BCrypt.Net-Next.dll",
+        "lib/netstandard2.1/BCrypt.Net-Next.xml",
+        "readme.md"
+      ]
+    },
     "Bogus/35.6.5": {
       "sha512": "2FGZn+aAVHjmCgClgmGkTDBVZk0zkLvAKGaxEf5JL6b3i9JbHTE4wnuY4vHCuzlCmJdU6VZjgDfHwmYkQF8VAA==",
       "type": "package",
@@ -1111,19 +1156,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Joao\\.nuget\\packages\\": {}
+    "C:\\Users\\rozeg\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\dev\\Booking\\Booking.Tests\\Booking.Tests.csproj",
+      "projectUniqueName": "C:\\dev\\booking-api\\Booking.Tests\\Booking.Tests.csproj",
       "projectName": "Booking.Tests",
-      "projectPath": "D:\\dev\\Booking\\Booking.Tests\\Booking.Tests.csproj",
-      "packagesPath": "C:\\Users\\Joao\\.nuget\\packages\\",
-      "outputPath": "D:\\dev\\Booking\\Booking.Tests\\obj\\",
+      "projectPath": "C:\\dev\\booking-api\\Booking.Tests\\Booking.Tests.csproj",
+      "packagesPath": "C:\\Users\\rozeg\\.nuget\\packages\\",
+      "outputPath": "C:\\dev\\booking-api\\Booking.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Joao\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\rozeg\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -1135,11 +1180,11 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "D:\\dev\\Booking\\Booking.Application\\Booking.Application.csproj": {
-              "projectPath": "D:\\dev\\Booking\\Booking.Application\\Booking.Application.csproj"
+            "C:\\dev\\booking-api\\Booking.Application\\Booking.Application.csproj": {
+              "projectPath": "C:\\dev\\booking-api\\Booking.Application\\Booking.Application.csproj"
             },
-            "D:\\dev\\Booking\\Booking.Domain\\Booking.Domain.csproj": {
-              "projectPath": "D:\\dev\\Booking\\Booking.Domain\\Booking.Domain.csproj"
+            "C:\\dev\\booking-api\\Booking.Domain\\Booking.Domain.csproj": {
+              "projectPath": "C:\\dev\\booking-api\\Booking.Domain\\Booking.Domain.csproj"
             }
           }
         }

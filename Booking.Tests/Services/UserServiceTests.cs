@@ -36,7 +36,7 @@ public class UserServiceTests
         //assert
         repo.Verify(r => r.Add(It.Is<User>(u =>
             u.Name == command.Name &&
-            u.Email.Equals(command.Email) &&
+            u.Email.Equals(Email.Create(command.Email)) &&
             u.PasswordHash.Contains("HASH") &&
             u.Role == command.Role
         )), Times.Once);
