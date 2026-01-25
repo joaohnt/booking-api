@@ -10,9 +10,11 @@ namespace Booking.Application.Services;
 public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
-    public UserService(IUserRepository userRepository)
+    private readonly ITokenService _tokenService;
+    public UserService(IUserRepository userRepository, ITokenService tokenService)
     {
         _userRepository = userRepository;
+        _tokenService = tokenService;
     }
     
     public void CreateUser(CreateUserCommand createUser)
@@ -34,11 +36,11 @@ public class UserService : IUserService
     {
         var user = await _userRepository.GetByEmail(command.Email);
         if (user == null)
-            throw new Exception("emal invalido");
+            throw new Exception("email invalido");
         var password = BCrypt.Net.BCrypt.Verify(command.Password, user.PasswordHash);
         if (!password)
             throw new Exception("senha invalida");
-        var token = "tokenzudo";
+        var token = _tokenService.GenerateToken(user);
         return new LoginUserResult(user.Email.MailAdress, token);
     }
 }
