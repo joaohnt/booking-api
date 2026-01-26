@@ -5,10 +5,19 @@ namespace Booking.Domain.Entities;
 
 public class Availability
 {
+
     public int Id { get; set; }
     public TimeRange TimeRange { get; set; }
     public AvailabilityStatus AvailabilityStatus { get; set; }
     
     public User Provider { get; set; }
     public int ProviderId { get; set; }
+    
+    private Availability() {} //ef
+    public Availability(int providerId, TimeRange timeRange)
+    {
+        ProviderId = providerId;
+        TimeRange = timeRange;
+        AvailabilityStatus = AvailabilityStatus.OPEN;
+    }
 }

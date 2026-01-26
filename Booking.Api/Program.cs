@@ -56,4 +56,6 @@ void ConfigureService(WebApplicationBuilder builder)
     builder.Services.AddScoped<IUserRepository, UserRepository>();
     builder.Services.AddScoped<IUserService, UserService>();
     builder.Services.AddScoped<ITokenService, TokenService>();
+    builder.Services.AddScoped<IAvailabilityService, AvailabilityService>();
+    builder.Services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();
 }
