@@ -23,7 +23,7 @@ public class AvailabilityRepository : IAvailabilityRepository
         return _context.SaveChangesAsync();
     }
 
-    public Task<bool> CheckAvailability(int providerId, TimeRange timeRange)
+    public Task<bool> CheckAvailabilityConflict(int providerId, TimeRange timeRange)
     {
         return _context.Availabilities.AnyAsync(
             a => a.ProviderId == providerId 
@@ -31,9 +31,14 @@ public class AvailabilityRepository : IAvailabilityRepository
                  && timeRange.End > a.TimeRange.Start);
     }
 
-    public Task GetAvailability()
+    public Task<bool> CheckBookingAvailability(int Id)
     {
-        throw new NotImplementedException();
+        return _context.Availabilities.AnyAsync(a => a.Id == Id && a.AvailabilityStatus == AvailabilityStatus.OPEN);
+    }
+
+    public Task<Availability?> GetById(int Id)
+    {
+        return _context.Availabilities.FirstOrDefaultAsync(a => a.Id == Id);
     }
 
     public Task<List<Availability>> GetProviderAvailability(int providerId)

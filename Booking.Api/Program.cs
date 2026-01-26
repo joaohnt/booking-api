@@ -58,4 +58,6 @@ void ConfigureService(WebApplicationBuilder builder)
     builder.Services.AddScoped<ITokenService, TokenService>();
     builder.Services.AddScoped<IAvailabilityService, AvailabilityService>();
     builder.Services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();
+    builder.Services.AddScoped<IBookingService, BookingService>();
+    builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 }

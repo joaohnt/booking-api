@@ -22,7 +22,6 @@ public class BookingMap : IEntityTypeConfiguration<Domain.Entities.Booking>
         
         builder.Property(x=> x.CanceledAt).HasColumnName("CanceledAt");
         builder.Property(x => x.CancellationReason).HasColumnName("CancellationReason");
-        builder.Property(x => x.BookingStatus).IsRequired().HasColumnName("BookingStatus");
         
         //Fks
         builder.HasOne(x => x.Client).WithMany(x => x.Bookings).HasForeignKey(x => x.ClientId).OnDelete(DeleteBehavior.NoAction);

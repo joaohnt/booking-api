@@ -8,8 +8,6 @@ public class Booking
     public DateTime CreatedAt { get; set; }
     public DateTime? CanceledAt { get; set; }
     public string? CancellationReason { get; set; }
-    public BookingStatus BookingStatus { get; set; } = BookingStatus.PENDING;
-    
     
     
     public Availability Availability { get; set; }
@@ -24,13 +22,10 @@ public class Booking
     {
         if(availability.AvailabilityStatus == AvailabilityStatus.CLOSED)
             throw new ArgumentException($"nao ta disponivel");
-        if(BookingStatus == BookingStatus.CANCELLED || BookingStatus == BookingStatus.CONFIRMED)
-            throw new ArgumentException("a reserva ja esta cancelada/confirmada");
         
         ClientId = clientId;
         AvailabilityId = availability.Id;
         availability.AvailabilityStatus = AvailabilityStatus.CLOSED;
-        BookingStatus = BookingStatus.CONFIRMED;
     }
 
     // pra eu cancelar, EU tenho que ter feito a reserva, eu n posso cancelar qlqr coisa
@@ -41,17 +36,20 @@ public class Booking
         if(ClientId != clientId) 
             throw new ArgumentException($"vc n pode cancelar a reserva de outro cliente");
         
-        if(BookingStatus == BookingStatus.CANCELLED)
-            throw new ArgumentException($"reserva ja cancelada");
-        
         if (availability.Id != AvailabilityId)
             throw new ArgumentException("disponibilidade nao pertence a esta reserva");
         
         ClientId = clientId;
         AvailabilityId = availability.Id;
         availability.AvailabilityStatus = AvailabilityStatus.OPEN;
-        BookingStatus = BookingStatus.CANCELLED;
         CanceledAt = DateTime.UtcNow;
         CancellationReason = reason;
+    }
+
+    public Booking() { }
+    public Booking(int clientId, int availabilityId)
+    {
+        ClientId = clientId;
+        AvailabilityId = availabilityId;
     }
 }

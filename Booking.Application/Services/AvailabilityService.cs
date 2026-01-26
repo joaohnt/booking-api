@@ -19,7 +19,7 @@ public class AvailabilityService : IAvailabilityService
     {
         var timeRange = TimeRange.Create(command.Start, command.End);
 
-        var hasConflict = await _availabilityRepository.CheckAvailability(providerId, timeRange);
+        var hasConflict = await _availabilityRepository.CheckAvailabilityConflict(providerId, timeRange);
         if (hasConflict)
             throw new ArgumentException("conflito de horario");
 

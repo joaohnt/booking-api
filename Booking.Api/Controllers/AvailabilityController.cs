@@ -34,7 +34,7 @@ public class AvailabilityController : ControllerBase
     // VER DISPONIBILIDADES DE PROVEDOR X
     [Authorize]
     [HttpGet]
-    [Route("{providerId}/get")]
+    [Route("{providerId:int}")]
     public async Task<IActionResult> GetProviderAvailability([FromRoute] int providerId)
     {
         var result = await _availabilityService.GetProviderAvailability(providerId);

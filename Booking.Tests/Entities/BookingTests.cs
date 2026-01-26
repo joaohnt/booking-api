@@ -24,7 +24,6 @@ public class BookingTests
         booking.Book(availability, clientId: 2);
 
         //assert
-        Assert.Equal(BookingStatus.CONFIRMED, booking.BookingStatus);
         Assert.Equal(2, booking.ClientId);
         Assert.Equal(1, booking.AvailabilityId);
         Assert.Equal(AvailabilityStatus.CLOSED, availability.AvailabilityStatus);
