@@ -35,18 +35,11 @@ public class UserController : ControllerBase
         return result;
     }
 
-    [Authorize(Roles = nameof(Role.CLIENT))]
     [HttpGet]
-    [Route("client")]
-    public ActionResult TesteUser()
+    [Route("providers")]
+    public async Task<IActionResult> GetProviders()
     {
-        return Ok("voce eh usuario");
-    }
-    [Authorize(Roles = nameof(Role.PROVIDER))]
-    [HttpGet]
-    [Route("provider")]
-    public ActionResult TesteProvider()
-    {
-        return Ok("voce eh proveor");
+        var providers = await _userService.GetProviders();
+        return Ok(providers);
     }
 }

@@ -35,12 +35,26 @@ public class UserService : IUserService
     public async Task<LoginUserResult> LoginUser(LoginUserCommand command)
     {
         var user = await _userRepository.GetByEmail(command.Email);
+        
         if (user == null)
             throw new Exception("email invalido");
+        
         var password = BCrypt.Net.BCrypt.Verify(command.Password, user.PasswordHash);
         if (!password)
             throw new Exception("senha invalida");
+        
         var token = _tokenService.GenerateToken(user);
         return new LoginUserResult(user.Email.MailAdress, token);
+    }
+
+    public async Task<IEnumerable<ProviderDTO>> GetProviders()
+    {
+        var providers = await _userRepository.GetProviders();
+        var response = providers.Select(p => new ProviderDTO()
+        {
+            Id = p.Id,
+            Name = p.Name,
+        });
+        return response;
     }
 }

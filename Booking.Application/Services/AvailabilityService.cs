@@ -24,10 +24,11 @@ public class AvailabilityService : IAvailabilityService
             throw new ArgumentException("conflito de horario");
 
         var availability = new Availability(providerId, timeRange);
-        _availabilityRepository.AddAvailability(availability);
+        await _availabilityRepository.AddAvailability(availability);
 
         return new AvailabilityDTO()
         {
+            Id = availability.Id,
             TimeRange = availability.TimeRange,
             AvailabilityStatus = availability.AvailabilityStatus,
             ProviderId = providerId,
@@ -39,6 +40,7 @@ public class AvailabilityService : IAvailabilityService
         var availabilities = await _availabilityRepository.GetProviderAvailability(providerId);
         var response = availabilities.Select(a => new AvailabilityDTO
         {
+            Id = a.Id,
             TimeRange = a.TimeRange,
             AvailabilityStatus = a.AvailabilityStatus,
             ProviderId = a.ProviderId

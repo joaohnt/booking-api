@@ -27,8 +27,9 @@ public class TokenService : ITokenService
         //infos do token
         var claims = new List<Claim>()
         {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Name),
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new Claim(ClaimTypes.Name, user.Name),
+            new Claim(ClaimTypes.Email, user.Email.MailAdress),
             new Claim(ClaimTypes.Role, user.Role.ToString()),
         };
 
