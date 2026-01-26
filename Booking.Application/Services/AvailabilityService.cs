@@ -33,5 +33,16 @@ public class AvailabilityService : IAvailabilityService
             ProviderId = providerId,
         };
     }
-    
+
+    public async Task<IEnumerable<AvailabilityDTO>> GetProviderAvailability(int providerId)
+    {
+        var availabilities = await _availabilityRepository.GetProviderAvailability(providerId);
+        var response = availabilities.Select(a => new AvailabilityDTO
+        {
+            TimeRange = a.TimeRange,
+            AvailabilityStatus = a.AvailabilityStatus,
+            ProviderId = a.ProviderId
+        });
+        return response;
+    }
 }

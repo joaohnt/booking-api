@@ -13,11 +13,13 @@ namespace Booking.Api.Controllers;
 public class AvailabilityController : ControllerBase
 {
     private readonly IAvailabilityService _availabilityService;
+
     public AvailabilityController(IAvailabilityService availabilityService)
     {
         _availabilityService = availabilityService;
     }
-    
+
+    // CRIAR DISPONIVILIDADE
     [Authorize(Roles = nameof(Role.PROVIDER))]
     [HttpPost]
     [Route("create")]
@@ -28,5 +30,14 @@ public class AvailabilityController : ControllerBase
 
         return Ok(result);
     }
-    
+
+    // VER DISPONIBILIDADES DE PROVEDOR X
+    [Authorize]
+    [HttpGet]
+    [Route("{providerId}/get")]
+    public async Task<IActionResult> GetProviderAvailability([FromRoute] int providerId)
+    {
+        var result = await _availabilityService.GetProviderAvailability(providerId);
+        return Ok(result);
+    }
 }

@@ -1,3 +1,4 @@
+using Booking.Domain.DTOs;
 using Booking.Domain.Entities;
 using Booking.Domain.Enums;
 using Booking.Domain.Repositories;
@@ -30,8 +31,13 @@ public class AvailabilityRepository : IAvailabilityRepository
                  && timeRange.End > a.TimeRange.Start);
     }
 
-    public Task GetAvailability(int providerId)
+    public Task GetAvailability()
     {
         throw new NotImplementedException();
+    }
+
+    public Task<List<Availability>> GetProviderAvailability(int providerId)
+    {
+        return _context.Availabilities.Where(a => a.ProviderId == providerId).ToListAsync();
     }
 }

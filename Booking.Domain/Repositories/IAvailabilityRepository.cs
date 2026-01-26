@@ -1,3 +1,4 @@
+using Booking.Domain.DTOs;
 using Booking.Domain.Entities;
 using Booking.Domain.ValueObjects;
 
@@ -7,5 +8,5 @@ public interface IAvailabilityRepository
 {
     Task AddAvailability(Availability availability);
     Task<bool> CheckAvailability(int providerId, TimeRange timeRange);
-    Task GetAvailability(int providerId);
-}
+    Task GetAvailability();
+    Task<List<Availability>> GetProviderAvailability(int providerId);}
