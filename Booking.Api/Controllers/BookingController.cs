@@ -28,9 +28,10 @@ public class BookingController : ControllerBase
     }
     [Authorize]
     [HttpGet]
-    [Route("{clientId}/bookings")]
-    public async Task<IActionResult> GetBookingsByClientId([FromRoute] int clientId)
+    [Route("/bookings")]
+    public async Task<IActionResult> GetBookingsByClientId()
     {
+        var clientId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
         var bookings = await _bookingService.GetBookingsByClientId(clientId);
         return Ok(bookings);
     }

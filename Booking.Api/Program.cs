@@ -39,8 +39,8 @@ builder.Services.AddSwaggerGen();
 ConfigureService(builder);
 
 var app = builder.Build();
-// app.UseSwagger();
-// app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
 app.MapGet("/", () => "Booking API");
 app.UseAuthentication();
 app.UseAuthorization();
