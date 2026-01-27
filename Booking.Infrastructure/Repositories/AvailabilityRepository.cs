@@ -45,4 +45,10 @@ public class AvailabilityRepository : IAvailabilityRepository
     {
         return _context.Availabilities.Where(a => a.ProviderId == providerId).ToListAsync();
     }
+    public Task UpdateStatus(Availability availability)
+    {
+        return _context.Availabilities.Where(a => a.Id == availability.Id)
+            .ExecuteUpdateAsync(s => s.SetProperty(
+                a => a.AvailabilityStatus, AvailabilityStatus.OPEN));
+    }
 }

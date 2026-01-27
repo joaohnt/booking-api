@@ -10,4 +10,6 @@ public interface IAvailabilityRepository
     Task<bool> CheckAvailabilityConflict(int providerId, TimeRange timeRange);
     Task<bool> CheckBookingAvailability(int Id);
     Task<Availability?> GetById(int Id);
-    Task<List<Availability>> GetProviderAvailability(int providerId);}
+    Task<List<Availability>> GetProviderAvailability(int providerId);
+    Task UpdateStatus(Availability availability);
+}

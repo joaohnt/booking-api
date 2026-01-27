@@ -23,4 +23,15 @@ public class BookingRepository : IBookingRepository
     {
         return  _context.Bookings.Where(b => b.ClientId == clientId).Include(b => b.Availability).ToListAsync();
     }
+
+    public Task<Domain.Entities.Booking?> GetBookingById(int bookingId)
+    {
+        return _context.Bookings.Where(b => b.Id == bookingId).Include(b => b.Availability).FirstOrDefaultAsync();
+    }
+
+    public Task RemoveBooking(Domain.Entities.Booking booking)
+    {
+        _context.Bookings.Remove(booking);
+        return _context.SaveChangesAsync();
+    }
 }

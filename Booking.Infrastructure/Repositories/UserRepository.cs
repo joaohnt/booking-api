@@ -29,6 +29,10 @@ public class UserRepository : IUserRepository
 
     public Task<List<User>> GetProviders()
     {
-        return  _context.Users.Where(u => u.Role == Role.PROVIDER == true).ToListAsync();
+        return  _context.Users.Where(u => u.Role == Role.PROVIDER).ToListAsync();
+    }
+    public Task<List<User>> GetClients()
+    {
+        return  _context.Users.Where(u => u.Role == Role.CLIENT).ToListAsync();
     }
 }

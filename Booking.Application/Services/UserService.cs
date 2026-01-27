@@ -57,4 +57,14 @@ public class UserService : IUserService
         });
         return response;
     }
+    public async Task<IEnumerable<ClientDTO>> GetClients()
+    {
+        var clients = await _userRepository.GetClients();
+        var response = clients.Select(p => new ClientDTO()
+        {
+            Id = p.Id,
+            Name = p.Name,
+        });
+        return response;
+    }
 }

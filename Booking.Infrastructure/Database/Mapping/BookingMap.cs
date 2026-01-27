@@ -20,9 +20,6 @@ public class BookingMap : IEntityTypeConfiguration<Domain.Entities.Booking>
             .ValueGeneratedOnAdd()
             .UseIdentityColumn(); // PK IDENTITY (1,1)
         
-        builder.Property(x=> x.CanceledAt).HasColumnName("CanceledAt");
-        builder.Property(x => x.CancellationReason).HasColumnName("CancellationReason");
-        
         //Fks
         builder.HasOne(x => x.Client).WithMany(x => x.Bookings).HasForeignKey(x => x.ClientId).OnDelete(DeleteBehavior.NoAction);
         builder.HasOne(x=>x.Availability).WithMany().HasForeignKey(x => x.AvailabilityId).OnDelete(DeleteBehavior.Cascade);

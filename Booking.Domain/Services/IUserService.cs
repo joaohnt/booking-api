@@ -8,4 +8,5 @@ public interface IUserService
     public void CreateUser(CreateUserCommand createUser);
     Task<LoginUserResult> LoginUser (LoginUserCommand loginUser);
     Task<IEnumerable<ProviderDTO>> GetProviders();
+    Task<IEnumerable<ClientDTO>> GetClients();
 }

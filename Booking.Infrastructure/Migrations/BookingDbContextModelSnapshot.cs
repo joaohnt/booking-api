@@ -55,14 +55,6 @@ namespace Booking.Infrastructure.Migrations
                     b.Property<int>("AvailabilityId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CanceledAt")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CanceledAt");
-
-                    b.Property<string>("CancellationReason")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("CancellationReason");
-
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 

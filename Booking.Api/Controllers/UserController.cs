@@ -42,4 +42,11 @@ public class UserController : ControllerBase
         var providers = await _userService.GetProviders();
         return Ok(providers);
     }
+    [HttpGet]
+    [Route("clients")]
+    public async Task<IActionResult> GetClients()
+    {
+        var clients = await _userService.GetClients();
+        return Ok(clients);
+    }
 }

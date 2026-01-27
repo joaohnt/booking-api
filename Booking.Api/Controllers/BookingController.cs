@@ -34,4 +34,14 @@ public class BookingController : ControllerBase
         var bookings = await _bookingService.GetBookingsByClientId(clientId);
         return Ok(bookings);
     }
+    
+    [Authorize(Roles = nameof(Role.CLIENT))]
+    [HttpDelete]
+    [Route("{bookingId:int}/cancel")]
+    public async Task <IActionResult> CancelBooking([FromRoute] int bookingId)
+    {
+        var clientId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        await _bookingService.CancelBooking(bookingId, clientId);
+        return Ok("Agendamento cancelado");
+    }
 }
