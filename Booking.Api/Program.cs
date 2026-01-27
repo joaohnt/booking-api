@@ -33,6 +33,15 @@ builder.Services.AddAuthentication(x =>
     };
 });
 builder.Services.AddAuthorization(); 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Frontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:8080")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -41,7 +50,7 @@ ConfigureService(builder);
 var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
-app.MapGet("/", () => "Booking API");
+app.UseCors("Frontend");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

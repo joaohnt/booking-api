@@ -47,4 +47,15 @@ public class AvailabilityService : IAvailabilityService
         });
         return response;
     }
+
+    public async Task RemoveAvailability(int availabilityId)
+    {
+        var availability = await _availabilityRepository.GetById(availabilityId);
+        if (availability == null)
+            throw new ArgumentException("disponibilidade nao encontrada");
+        
+        availability.Cancel(availabilityId);
+        
+        _availabilityRepository.RemoveAvailability(availability);
+    }
 }

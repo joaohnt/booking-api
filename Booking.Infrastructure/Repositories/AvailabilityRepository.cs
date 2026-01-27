@@ -51,4 +51,10 @@ public class AvailabilityRepository : IAvailabilityRepository
             .ExecuteUpdateAsync(s => s.SetProperty(
                 a => a.AvailabilityStatus, AvailabilityStatus.OPEN));
     }
+
+    public Task RemoveAvailability(Availability availability)
+    {
+        _context.Remove(availability);
+        return _context.SaveChangesAsync();
+    }
 }

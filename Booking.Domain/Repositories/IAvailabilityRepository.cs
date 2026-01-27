@@ -12,4 +12,5 @@ public interface IAvailabilityRepository
     Task<Availability?> GetById(int Id);
     Task<List<Availability>> GetProviderAvailability(int providerId);
     Task UpdateStatus(Availability availability);
+    Task RemoveAvailability(Availability availability);
 }

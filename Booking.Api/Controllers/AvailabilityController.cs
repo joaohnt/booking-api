@@ -40,4 +40,12 @@ public class AvailabilityController : ControllerBase
         var result = await _availabilityService.GetProviderAvailability(providerId);
         return Ok(result);
     }
+    [Authorize(Roles = nameof(Role.PROVIDER))]
+    [HttpDelete]
+    [Route("{availabilityId:int}/cancel")]
+    public async Task <IActionResult> CancelBooking([FromRoute] int availabilityId)
+    {
+        await _availabilityService.RemoveAvailability(availabilityId);
+        return Ok("Disponibilidade cancelada");
+    }
 }

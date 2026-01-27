@@ -13,6 +13,15 @@ public class Availability
     public User Provider { get; set; }
     public int ProviderId { get; set; }
     
+
+    public void Cancel(int availabilityId)
+    {
+        if(Id != availabilityId)
+            throw new ArgumentException("Id invalido");
+        
+        if (AvailabilityStatus == AvailabilityStatus.CLOSED)
+            throw new Exception("Nao pode cancelar uma disponibilidade com um cliente");
+    }
     private Availability() {} //ef
     public Availability(int providerId, TimeRange timeRange)
     {
