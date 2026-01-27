@@ -5,4 +5,5 @@ namespace Booking.Domain.Services;
 public interface IBookingService
 {
     Task<BookingDTO> CreateBooking(int clientId, int availabilityId);
+    Task<IEnumerable<Entities.Booking>> GetBookingsByClientId(int clientId);
 }

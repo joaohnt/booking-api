@@ -1,3 +1,4 @@
+using Booking.Domain.DTOs;
 using Booking.Domain.Repositories;
 using Booking.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
@@ -16,5 +17,10 @@ public class BookingRepository : IBookingRepository
     {
         _context.Bookings.AddAsync(booking);
         return _context.SaveChangesAsync();
+    }
+
+    public Task<List<Domain.Entities.Booking>> GetBookingsByClientId(int clientId)
+    {
+        return  _context.Bookings.Where(b => b.ClientId == clientId).Include(b => b.Availability).ToListAsync();
     }
 }

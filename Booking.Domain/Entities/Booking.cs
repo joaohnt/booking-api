@@ -47,9 +47,10 @@ public class Booking
     }
 
     public Booking() { }
-    public Booking(int clientId, int availabilityId)
+    public Booking(int clientId, int availabilityId, DateTime createdAt)
     {
         ClientId = clientId;
         AvailabilityId = availabilityId;
+        CreatedAt = createdAt;
     }
 }

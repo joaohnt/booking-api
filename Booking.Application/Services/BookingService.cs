@@ -24,16 +24,20 @@ public class BookingService : IBookingService
         if (!hasAvailability)
             throw new ArgumentException("Availability not found");
         
-        availability.AvailabilityStatus = AvailabilityStatus.CLOSED;
+        var booking = new Domain.Entities.Booking(clientId, availabilityId, DateTime.UtcNow);
+        booking.Book(availability, clientId);
         
-        var booking = new Domain.Entities.Booking(clientId, availabilityId);
         await _bookingRepository.AddBooking(booking);
         
-
         return new BookingDTO()
         {
             Id = booking.Id,
             CreatedAt = DateTime.UtcNow.Date,
         };
+    }
+    public async Task<IEnumerable<Domain.Entities.Booking>> GetBookingsByClientId(int clientId)
+    {
+        var result = await _bookingRepository.GetBookingsByClientId(clientId);
+        return result;
     }
 }
