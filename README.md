@@ -40,6 +40,8 @@ API de agendamentos com foco em domínio, usando Clean Architecture + DDD. O usu
 
 ### Availability (Provider)
 - `POST /availability/create`  
+  **Auth**: `ROLE=PROVIDER`
+- `DELETE /availability/{availabilityId}/delete`  
   **Auth**: `ROLE=PROVIDER`  
   Body: `{ "start", "end" }`
 - `GET /availability/{providerId}`  
