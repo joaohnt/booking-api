@@ -56,6 +56,6 @@ public class AvailabilityService : IAvailabilityService
         
         availability.Cancel(availabilityId);
         
-        _availabilityRepository.RemoveAvailability(availability);
+        await _availabilityRepository.RemoveAvailability(availability);
     }
 }
