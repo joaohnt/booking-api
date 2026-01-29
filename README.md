@@ -1,6 +1,13 @@
 # Booking API
 
-API de agendamentos com foco em domínio, usando Clean Architecture + DDD. O usuário pode ser **Provider** (define disponibilidades) ou **Client** (agenda horários disponíveis).
+API de agendamentos com foco 100% no back-end. Este projeto foi pensado para portfolio, com dominio bem definido, regras de negocio claras e documentacao completa via Swagger (nao ha UI dedicada).
+
+## Visao geral
+O usuario pode ser:
+- **Provider**: define sua disponibilidade de horarios.
+- **Client**: agenda horarios disponiveis.
+
+O fluxo principal e: provider cria disponibilidade -> client agenda -> client pode cancelar respeitando regras do dominio.
 
 ## Stack
 - .NET 10
@@ -11,27 +18,43 @@ API de agendamentos com foco em domínio, usando Clean Architecture + DDD. O usu
 - xUnit / Moq / Bogus (tests)
 
 ## Arquitetura (Clean)
-- `Booking.Api`: controllers, auth, Swagger e composição de dependências
+- `Booking.Api`: controllers, auth, Swagger e composicao de dependencias
 - `Booking.Application`: casos de uso (services)
-- `Booking.Domain`: entidades, value objects, regras de negócio, interfaces
+- `Booking.Domain`: entidades, value objects, regras de negocio, interfaces
 - `Booking.Infrastructure`: EF Core, repositories, JWT token service
-- `Booking.Tests`: testes unitários do domínio e serviços
+- `Booking.Tests`: testes unitarios do dominio e servicos
 
-## Regras de negócio (domínio)
+## Decisoes de design
+- **Clean Architecture + DDD** para manter regras de negocio isoladas de frameworks e facilitar evolucao do dominio.
+- **JWT + Roles** para separar claramente os acessos de Provider e Client.
+- **BCrypt** para hash de senha com custo configuravel e padrao de mercado.
+- **EF Core + SQL Server** por consistencia relacional e facilidade de migrations.
+
+## Regras de negocio (dominio)
 - `Email` valida formato e normaliza para lowercase.
-- `TimeRange` exige `Start < End` e não permite data passada.
-- Disponibilidade não pode conflitar com outro horário do mesmo provider.
-- Agendamento só ocorre se a disponibilidade estiver **OPEN**.
-- Cancelamento só pelo cliente dono do agendamento.
-- Cancelamento bloqueado a **2h ou menos** do início.
+- `TimeRange` exige `Start < End` e nao permite data passada.
+- Disponibilidade nao pode conflitar com outro horario do mesmo provider.
+- Agendamento so ocorre se a disponibilidade estiver **OPEN**.
+- Cancelamento so pelo cliente dono do agendamento.
+- Cancelamento bloqueado a **2h ou menos** do inicio.
 - Ao cancelar, a disponibilidade volta para **OPEN**.
+
+## Casos de uso (fluxo principal)
+1) Provider cria disponibilidade de horario
+2) Client lista disponibilidades do provider
+3) Client agenda uma disponibilidade **OPEN**
+4) Client pode cancelar respeitando a regra de 2h
+5) Ao cancelar, a disponibilidade volta para **OPEN**
+
+## API (Swagger)
+A UI de documentacao e o proprio Swagger em `/swagger`. Todos os exemplos de request/response e contratos estao la.
 
 ## Endpoints
 ### Auth
-- `POST /user/signup`  
+- `POST /user/signup`
   Body: `{ "name", "email", "password", "role" }`
-- `POST /user/signin`  
-  Body: `{ "email", "password" }`  
+- `POST /user/signin`
+  Body: `{ "email", "password" }`
   Retorna: `{ "email", "token" }`
 
 ### Users
@@ -39,35 +62,33 @@ API de agendamentos com foco em domínio, usando Clean Architecture + DDD. O usu
 - `GET /user/clients`
 
 ### Availability (Provider)
-- `POST /availability/create`  
-  **Auth**: `ROLE=PROVIDER`  
+- `POST /availability/create`
+  **Auth**: `ROLE=PROVIDER`
   Body: `{ "start", "end" }`
-- `GET /availability/{providerId}`  
-  **Auth**: qualquer usuário autenticado
+- `GET /availability/{providerId}`
+  **Auth**: qualquer usuario autenticado
 
 ### Booking (Client)
-- `POST /booking/{availabilityId}/create`  
+- `POST /booking/{availabilityId}/create`
   **Auth**: `ROLE=CLIENT`
-- `GET /bookings`  
-  **Auth**: qualquer usuário autenticado
-- `DELETE /booking/{bookingId}/cancel`  
+- `GET /bookings`
+  **Auth**: qualquer usuario autenticado
+- `DELETE /booking/{bookingId}/cancel`
   **Auth**: `ROLE=CLIENT`
 
-## Autenticação
+## Autenticacao
 Use o token do login no header:
 
 ```
 Authorization: Bearer <token>
 ```
 
-Os enums são serializados como string (`PROVIDER`, `CLIENT`, `OPEN`, `CLOSED`).
+Os enums sao serializados como string (`PROVIDER`, `CLIENT`, `OPEN`, `CLOSED`).
 
 ## Rodando local
-1) Configure a connection string e o JWT:
-   - `Booking.Api/appsettings.json`  
-   - ou variáveis de ambiente equivalentes
+1) Configure a connection string e o JWT em `Booking.Api/appsettings.json`.
 
-2) Restaurar dependências:
+2) Restaurar dependencias:
 ```
 dotnet restore
 ```
@@ -82,7 +103,7 @@ dotnet ef database update --project Booking.Infrastructure --startup-project Boo
 dotnet run --project Booking.Api
 ```
 
-Swagger estará disponível em `/swagger`.
+Swagger estara disponivel em `/swagger`.
 
 ## Testes
 ```
