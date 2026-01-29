@@ -1,6 +1,7 @@
 using System.Security.Claims;
+using Booking.Application.Interfaces.Services;
+using Booking.Application.Services;
 using Booking.Domain.Enums;
-using Booking.Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

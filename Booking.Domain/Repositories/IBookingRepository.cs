@@ -1,5 +1,3 @@
-using Booking.Domain.DTOs;
-
 namespace Booking.Domain.Repositories;
 
 public interface IBookingRepository

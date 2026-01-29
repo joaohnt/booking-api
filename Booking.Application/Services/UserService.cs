@@ -1,8 +1,8 @@
 ﻿using BCrypt;
-using Booking.Domain.DTOs;
+using Booking.Application.DTOs;
+using Booking.Application.Interfaces.Services;
 using Booking.Domain.Entities;
 using Booking.Domain.Repositories;
-using Booking.Domain.Services;
 using Booking.Domain.ValueObjects;
 
 namespace Booking.Application.Services;

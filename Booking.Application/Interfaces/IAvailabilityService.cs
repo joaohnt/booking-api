@@ -1,7 +1,6 @@
-using Booking.Domain.DTOs;
-using Booking.Domain.Entities;
+using Booking.Application.DTOs;
 
-namespace Booking.Domain.Services;
+namespace Booking.Application.Interfaces.Services;
 
 public interface IAvailabilityService
 {

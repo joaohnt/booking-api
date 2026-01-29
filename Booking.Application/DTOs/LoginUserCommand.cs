@@ -1,4 +1,4 @@
-﻿namespace Booking.Domain.DTOs;
+﻿namespace Booking.Application.DTOs;
 
 public class LoginUserCommand
 {

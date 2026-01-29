@@ -1,10 +1,9 @@
 ﻿using System.Security.Cryptography;
 using Bogus;
-using Booking.Domain.DTOs;
+using Booking.Application.DTOs;
 using Booking.Domain.Entities;
 using Booking.Domain.Enums;
 using Booking.Domain.Repositories;
-using Booking.Domain.Services;
 using Booking.Domain.ValueObjects;
 using Moq;
 using Booking.Application.Services;

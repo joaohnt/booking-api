@@ -1,6 +1,6 @@
 ﻿using Booking.Domain.Entities;
 
-namespace Booking.Application.Services;
+namespace Booking.Application.Interfaces.Services;
 
 public interface ITokenService
 {

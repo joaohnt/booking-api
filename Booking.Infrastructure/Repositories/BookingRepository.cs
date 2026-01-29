@@ -1,4 +1,3 @@
-using Booking.Domain.DTOs;
 using Booking.Domain.Repositories;
 using Booking.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;

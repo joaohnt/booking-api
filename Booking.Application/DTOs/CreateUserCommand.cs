@@ -1,7 +1,6 @@
 ﻿using Booking.Domain.Enums;
-using Booking.Domain.ValueObjects;
 
-namespace Booking.Domain.DTOs;
+namespace Booking.Application.DTOs;
 
 public class CreateUserCommand
 {

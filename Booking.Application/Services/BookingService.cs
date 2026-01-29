@@ -1,8 +1,8 @@
 using System.Runtime.InteropServices.JavaScript;
-using Booking.Domain.DTOs;
+using Booking.Application.DTOs;
+using Booking.Application.Interfaces.Services;
 using Booking.Domain.Enums;
 using Booking.Domain.Repositories;
-using Booking.Domain.Services;
 
 namespace Booking.Application.Services;
 
