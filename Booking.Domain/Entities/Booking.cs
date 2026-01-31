@@ -45,6 +45,19 @@ public class Booking
         
         availability.AvailabilityStatus = AvailabilityStatus.OPEN;
     }
+    
+    public void CancelByProvider(Availability availability, int providerId)
+    {
+        if (availability.ProviderId != providerId)
+            throw new ArgumentException("vc n pode cancelar a reserva de outro provider");
+        if (availability.Id != AvailabilityId)
+            throw new ArgumentException("disponibilidade nao pertence a esta reserva");
+        if (availability.TimeRange.Start - DateTime.UtcNow <= TimeSpan.FromHours(2) &&
+            availability.TimeRange.Start > DateTime.UtcNow)
+            throw new ArgumentException("voce nao pode cancelar um agendamento faltando 2h ou menos");
+
+        availability.AvailabilityStatus = AvailabilityStatus.OPEN;
+    }
 
     public Booking() { }
     public Booking(int clientId, int availabilityId, DateTime createdAt)

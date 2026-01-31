@@ -40,8 +40,13 @@ public class BookingService : IBookingService
         var result = await _bookingRepository.GetBookingsByClientId(clientId);
         return result;
     }
+    public async Task<IEnumerable<Domain.Entities.Booking>> GetBookingsFromProvider(int providerId)
+    {
+        var result = await _bookingRepository.GetBookingsFromProvider(providerId);
+        return result;
+    }
 
-    public async Task CancelBooking(int bookingId, int clientId)
+    public async Task CancelBooking(int bookingId, int id)
     {
         var booking = await _bookingRepository.GetBookingById(bookingId);
         if (booking == null)
@@ -51,7 +56,20 @@ public class BookingService : IBookingService
         if (availability == null)
             throw new ArgumentException("Disponibilidade nao encontrada");
         
-        booking.Cancel(availability, clientId);
+        booking.Cancel(availability, id);
+        
+        await _availabilityRepository.UpdateStatus(availability);
+        await _bookingRepository.RemoveBooking(booking);
+    }
+    public async Task CancelBookingAsProvider(int bookingId, int providerId)
+    {
+        var booking = await _bookingRepository.GetBookingById(bookingId);
+        if (booking == null)
+            throw new ArgumentException("Agendamento nao encontrado");
+        
+        var availability = booking.Availability;
+        
+        booking.CancelByProvider(availability, providerId);
         
         await _availabilityRepository.UpdateStatus(availability);
         await _bookingRepository.RemoveBooking(booking);

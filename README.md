@@ -4,7 +4,7 @@ API de agendamentos com foco 100% no back-end. Este projeto foi pensado para por
 
 ## Visao geral
 O usuario pode ser:
-- **Provider**: define sua disponibilidade de horarios.
+- **Provider**: define sua disponibilidade de horarios e gerencia agendamentos da propria agenda.
 - **Client**: agenda horarios disponiveis.
 
 O fluxo principal e: provider cria disponibilidade -> client agenda -> client pode cancelar respeitando regras do dominio.
@@ -29,13 +29,14 @@ O fluxo principal e: provider cria disponibilidade -> client agenda -> client po
 - **JWT + Roles** para separar claramente os acessos de Provider e Client.
 - **BCrypt** para hash de senha com custo configuravel e padrao de mercado.
 - **EF Core + SQL Server** por consistencia relacional e facilidade de migrations.
+- **Cadastro publico cria CLIENT**; Provider e promovido manualmente no banco/suporte.
 
 ## Regras de negocio (dominio)
 - `Email` valida formato e normaliza para lowercase.
 - `TimeRange` exige `Start < End` e nao permite data passada.
 - Disponibilidade nao pode conflitar com outro horario do mesmo provider.
 - Agendamento so ocorre se a disponibilidade estiver **OPEN**.
-- Cancelamento so pelo cliente dono do agendamento.
+- Cancelamento pelo cliente dono do agendamento ou pelo provider da disponibilidade.
 - Cancelamento bloqueado a **2h ou menos** do inicio.
 - Ao cancelar, a disponibilidade volta para **OPEN**.
 
@@ -52,7 +53,7 @@ A UI de documentacao e o proprio Swagger em `/swagger`. Todos os exemplos de req
 ## Endpoints
 ### Auth
 - `POST /user/signup`
-  Body: `{ "name", "email", "password", "role" }`
+  Body: `{ "name", "email", "password" }`
 - `POST /user/signin`
   Body: `{ "email", "password" }`
   Retorna: `{ "email", "token" }`
@@ -60,6 +61,7 @@ A UI de documentacao e o proprio Swagger em `/swagger`. Todos os exemplos de req
 ### Users
 - `GET /user/providers`
 - `GET /user/clients`
+  **Auth**: `ROLE=PROVIDER`
 
 ### Availability (Provider)
 - `POST /availability/create`
@@ -67,6 +69,8 @@ A UI de documentacao e o proprio Swagger em `/swagger`. Todos os exemplos de req
   Body: `{ "start", "end" }`
 - `GET /availability/{providerId}`
   **Auth**: qualquer usuario autenticado
+- `DELETE /availability/{availabilityId}/cancel`
+  **Auth**: `ROLE=PROVIDER`
 
 ### Booking (Client)
 - `POST /booking/{availabilityId}/create`
@@ -75,6 +79,12 @@ A UI de documentacao e o proprio Swagger em `/swagger`. Todos os exemplos de req
   **Auth**: qualquer usuario autenticado
 - `DELETE /booking/{bookingId}/cancel`
   **Auth**: `ROLE=CLIENT`
+
+### Booking (Provider)
+- `GET /bookings/provider`
+  **Auth**: `ROLE=PROVIDER`
+- `DELETE /booking/{bookingId}/cancel/provider`
+  **Auth**: `ROLE=PROVIDER`
 
 ## Autenticacao
 Use o token do login no header:

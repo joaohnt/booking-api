@@ -19,19 +19,23 @@ public class UserController : ControllerBase
         _userService = userService;
     }
     
+    
+    // alterei p criar sempre client. caso o usuario queira ser provider,
+    // tera q entrar em contato c suporte e realizar isso manualmente no banco
+    // pois provider tem acesso a dados sensiveis (cancelar agendamento)
     [HttpPost]
     [Route("signup")]
-    public ActionResult SignUp([FromBody] CreateUserCommand command)
+    public ActionResult SignUp([FromBody] CreateUserRequest request)
     {
-        _userService.CreateUser(command);
-        return Ok(command);
+        _userService.CreateUser(request);
+        return Ok(request);
     }
-
+    
     [HttpPost]
     [Route("signin")]
-    public async Task<LoginUserResult> SignIn([FromBody] LoginUserCommand command)
+    public async Task<LoginUserResponse> SignIn([FromBody] LoginUserRequest request)
     {
-        var result = await _userService.LoginUser(command);
+        var result = await _userService.LoginUser(request);
         return result;
     }
 
@@ -42,6 +46,8 @@ public class UserController : ControllerBase
         var providers = await _userService.GetProviders();
         return Ok(providers);
     }
+    
+    [Authorize(Roles = nameof(Role.PROVIDER))]
     [HttpGet]
     [Route("clients")]
     public async Task<IActionResult> GetClients()

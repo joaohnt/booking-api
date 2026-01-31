@@ -1,8 +1,8 @@
 ﻿namespace Booking.Application.DTOs;
 
-public class LoginUserResult
+public class LoginUserResponse
 {
-    public LoginUserResult(string email, string token)
+    public LoginUserResponse(string email, string token)
     {
         Email = email;
         Token = token;

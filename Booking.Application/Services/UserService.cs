@@ -17,7 +17,7 @@ public class UserService : IUserService
         _tokenService = tokenService;
     }
     
-    public void CreateUser(CreateUserCommand createUser)
+    public void CreateUser(CreateUserRequest createUser)
     {
         string hashedPassword = BCrypt.Net.BCrypt.HashPassword(createUser.Password);
         
@@ -26,25 +26,24 @@ public class UserService : IUserService
             Name = createUser.Name,
             Email = Email.Create(createUser.Email),
             PasswordHash = hashedPassword,
-            Role = createUser.Role
         };
         
         _userRepository.Add(user);
     }
 
-    public async Task<LoginUserResult> LoginUser(LoginUserCommand command)
+    public async Task<LoginUserResponse> LoginUser(LoginUserRequest request)
     {
-        var user = await _userRepository.GetByEmail(command.Email);
+        var user = await _userRepository.GetByEmail(request.Email);
         
         if (user == null)
             throw new Exception("email invalido");
         
-        var password = BCrypt.Net.BCrypt.Verify(command.Password, user.PasswordHash);
+        var password = BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash);
         if (!password)
             throw new Exception("senha invalida");
         
         var token = _tokenService.GenerateToken(user);
-        return new LoginUserResult(user.Email.MailAdress, token);
+        return new LoginUserResponse(user.Email.MailAdress, token);
     }
 
     public async Task<IEnumerable<ProviderDTO>> GetProviders()

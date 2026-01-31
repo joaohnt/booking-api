@@ -15,9 +15,9 @@ public class AvailabilityService : IAvailabilityService
         _availabilityRepository = availabilityRepository;
     }
 
-    public async Task<AvailabilityDTO> CreateAvailability(int providerId, CreateAvailabilityCommand command)
+    public async Task<AvailabilityDTO> CreateAvailability(int providerId, CreateAvailabilityRequest request)
     {
-        var timeRange = TimeRange.Create(command.Start, command.End);
+        var timeRange = TimeRange.Create(request.Start, request.End);
 
         var hasConflict = await _availabilityRepository.CheckAvailabilityConflict(providerId, timeRange);
         if (hasConflict)

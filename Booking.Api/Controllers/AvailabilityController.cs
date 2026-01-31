@@ -24,10 +24,10 @@ public class AvailabilityController : ControllerBase
     [Authorize(Roles = nameof(Role.PROVIDER))]
     [HttpPost]
     [Route("create")]
-    public async Task<IActionResult> CreateAvailability([FromBody] CreateAvailabilityCommand command)
+    public async Task<IActionResult> CreateAvailability([FromBody] CreateAvailabilityRequest request)
     {
         var providerId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-        var result = await _availabilityService.CreateAvailability(providerId, command);
+        var result = await _availabilityService.CreateAvailability(providerId, request);
 
         return Ok(result);
     }

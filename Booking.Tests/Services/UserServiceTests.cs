@@ -19,7 +19,7 @@ public class UserServiceTests
     public void TestRegisterUser_GivenAllParameters_ThenShouldCreate()
     {
         //arrange
-        var command = new CreateUserCommand()
+        var command = new CreateUserRequest()
         {
         Name = _faker.Person.FullName,
         Email = _faker.Person.Email,

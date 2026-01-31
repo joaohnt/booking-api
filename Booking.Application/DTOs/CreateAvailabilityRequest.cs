@@ -1,6 +1,6 @@
 namespace Booking.Application.DTOs;
 
-public class CreateAvailabilityCommand
+public class CreateAvailabilityRequest
 {
     public DateTime Start { get; set; }
     public DateTime End { get; set; }

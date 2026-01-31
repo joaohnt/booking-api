@@ -20,12 +20,20 @@ public class BookingRepository : IBookingRepository
 
     public Task<List<Domain.Entities.Booking>> GetBookingsByClientId(int clientId)
     {
-        return  _context.Bookings.Where(b => b.ClientId == clientId).Include(b => b.Availability).ToListAsync();
+        return  _context.Bookings.AsNoTracking().Where(b => b.ClientId == clientId).Include(b => b.Availability).ToListAsync();
+    }
+
+    public Task<List<Domain.Entities.Booking>> GetBookingsFromProvider(int providerId)
+    {
+        return _context.Bookings
+            .AsNoTracking().Include(b => b.Availability)
+            .Where(b => b.Availability.ProviderId == providerId)
+            .ToListAsync();
     }
 
     public Task<Domain.Entities.Booking?> GetBookingById(int bookingId)
     {
-        return _context.Bookings.Where(b => b.Id == bookingId).Include(b => b.Availability).FirstOrDefaultAsync();
+        return _context.Bookings.AsNoTracking().Where(b => b.Id == bookingId).Include(b => b.Availability).FirstOrDefaultAsync();
     }
 
     public Task RemoveBooking(Domain.Entities.Booking booking)
