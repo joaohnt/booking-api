@@ -35,15 +35,29 @@ public class BookingService : IBookingService
             CreatedAt = DateTime.UtcNow.Date,
         };
     }
-    public async Task<IEnumerable<Domain.Entities.Booking>> GetBookingsByClientId(int clientId)
+    public async Task<IEnumerable<BookingDTO>> GetBookingsByClientId(int clientId)
     {
         var result = await _bookingRepository.GetBookingsByClientId(clientId);
-        return result;
+        return result.Select(b => new BookingDTO
+        {
+            Id = b.Id,
+            CreatedAt = b.CreatedAt,
+            ClientName = b.Client?.Name,
+            ProviderName = b.Availability?.Provider?.Name,
+            Availability = b.Availability,
+        }).ToList();
     }
-    public async Task<IEnumerable<Domain.Entities.Booking>> GetBookingsFromProvider(int providerId)
+    public async Task<IEnumerable<BookingDTO>> GetBookingsFromProvider(int providerId)
     {
         var result = await _bookingRepository.GetBookingsFromProvider(providerId);
-        return result;
+        return result.Select(b => new BookingDTO
+        {
+            Id = b.Id,
+            CreatedAt = b.CreatedAt,
+            ClientName = b.Client?.Name,
+            ProviderName = b.Availability?.Provider?.Name,
+            Availability = b.Availability,
+        }).ToList();
     }
 
     public async Task CancelBooking(int bookingId, int id)

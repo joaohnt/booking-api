@@ -1,4 +1,5 @@
-﻿using Booking.Domain.Enums;
+﻿using System.Text.Json.Serialization;
+using Booking.Domain.Enums;
 using Booking.Domain.ValueObjects;
 
 namespace Booking.Domain.Entities;
@@ -10,6 +11,7 @@ public class Availability
     public TimeRange TimeRange { get; set; }
     public AvailabilityStatus AvailabilityStatus { get; set; }
     
+    [JsonIgnore]
     public User Provider { get; set; }
     public int ProviderId { get; set; }
     

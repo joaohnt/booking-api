@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using Booking.Domain.Enums;
 using Booking.Domain.ValueObjects;
 
