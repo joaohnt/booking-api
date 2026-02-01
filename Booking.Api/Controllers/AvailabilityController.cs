@@ -4,6 +4,7 @@ using Booking.Application.DTOs;
 using Booking.Application.Interfaces.Services;
 using Booking.Application.Services;
 using Booking.Domain.Enums;
+using Booking.Domain.ValueObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,6 +31,19 @@ public class AvailabilityController : ControllerBase
         var result = await _availabilityService.CreateAvailability(providerId, request);
 
         return Ok(result);
+    }
+    
+    // ATUALIZAR DISPONIBILIDADE
+    [Authorize(Roles = nameof(Role.PROVIDER))]
+    [HttpPut]
+    [Route("{availabilityId:int}/update")]
+    public async Task<IActionResult> UpdateAvailability([FromRoute] int availabilityId, [FromBody] UpdateAvailabilityRequest request)
+    {
+        var providerId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var timeRange = TimeRange.Create(request.Start, request.End);
+        await _availabilityService.UpdateAvailability(availabilityId, providerId, timeRange);
+
+        return NoContent();
     }
 
     // VER DISPONIBILIDADES DE PROVEDOR X

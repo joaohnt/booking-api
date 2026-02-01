@@ -56,4 +56,14 @@ public class AvailabilityRepository : IAvailabilityRepository
         _context.Remove(availability);
         return _context.SaveChangesAsync();
     }
+    
+    public Task UpdateTimeRange(Availability availability)
+    {
+        return _context.Availabilities
+            .Where(a => a.Id == availability.Id)
+            .ExecuteUpdateAsync(s => s
+                .SetProperty(a => a.TimeRange.Start, availability.TimeRange.Start)
+                .SetProperty(a => a.TimeRange.End, availability.TimeRange.End)
+            );
+    }
 }

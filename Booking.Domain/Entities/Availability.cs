@@ -24,6 +24,16 @@ public class Availability
         if (AvailabilityStatus == AvailabilityStatus.CLOSED)
             throw new Exception("Nao pode cancelar uma disponibilidade com um cliente");
     }
+
+    public void Update(TimeRange timeRange, int providerId)
+    {
+        if(ProviderId != providerId)
+            throw new ArgumentException("A disponibilidade pertence a outro provbedor");
+        
+        if(AvailabilityStatus == AvailabilityStatus.CLOSED) 
+            throw new ArgumentException("nao e possivel alterar o horario da disponibilidade com agendamento confirmado");
+        TimeRange = timeRange;
+    }
     private Availability() {} //ef
     public Availability(int providerId, TimeRange timeRange)
     {

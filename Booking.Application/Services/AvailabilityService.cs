@@ -58,4 +58,14 @@ public class AvailabilityService : IAvailabilityService
         
         await _availabilityRepository.RemoveAvailability(availability);
     }
+    public async Task UpdateAvailability(int availabilityId, int providerId, TimeRange timeRange)
+    {
+        var availability = await _availabilityRepository.GetById(availabilityId);
+        if(availability == null)
+            throw new ArgumentException("Disponibilidade nao encontrada");
+        
+        availability.Update(timeRange, providerId);
+        await _availabilityRepository.UpdateTimeRange(availability);
+
+    }
 }

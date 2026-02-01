@@ -10,6 +10,7 @@ public interface IAvailabilityRepository
     Task<bool> CheckBookingAvailability(int Id);
     Task<Availability?> GetById(int Id);
     Task<List<Availability>> GetProviderAvailability(int providerId);
+    Task UpdateTimeRange(Availability availability);
     Task UpdateStatus(Availability availability);
     Task RemoveAvailability(Availability availability);
 }

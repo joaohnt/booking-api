@@ -39,6 +39,7 @@ O fluxo principal e: provider cria disponibilidade -> client agenda -> client po
 - Cancelamento pelo cliente dono do agendamento ou pelo provider da disponibilidade.
 - Cancelamento bloqueado a **2h ou menos** do inicio.
 - Ao cancelar, a disponibilidade volta para **OPEN**.
+- Provider so pode editar disponibilidade se estiver **OPEN** (sem booking confirmado).
 
 ## Casos de uso (fluxo principal)
 1) Provider cria disponibilidade de horario
@@ -69,6 +70,9 @@ A UI de documentacao e o proprio Swagger em `/swagger`. Todos os exemplos de req
   Body: `{ "start", "end" }`
 - `GET /availability/{providerId}`
   **Auth**: qualquer usuario autenticado
+- `PUT /availability/{availabilityId}/update`
+  **Auth**: `ROLE=PROVIDER`
+  Body: `{ "start", "end" }`
 - `DELETE /availability/{availabilityId}/cancel`
   **Auth**: `ROLE=PROVIDER`
 
